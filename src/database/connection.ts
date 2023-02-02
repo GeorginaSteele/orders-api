@@ -9,7 +9,10 @@ const connection = new Sequelize({
   storage:
     "/Users/georgina.steele/Documents/Interviewing/sylvera/sylvera-api/problemStatement/orders.db",
   logging: false,
-  models: Models
+  models: Models,
+  define: {
+    timestamps: false
+  }
 });
 
 export default connection;
