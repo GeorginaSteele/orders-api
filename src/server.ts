@@ -3,11 +3,12 @@ import bodyParser from "koa-bodyparser";
 import cors from "koa2-cors";
 import logger from "koa-logger";
 
+import { config } from "./config";
 import healthcheckRoutes from "./routes/healthcheck";
 
 const app = new Koa();
 
-const PORT = process.env.PORT || 7654;
+const PORT = config.port;
 
 app.use(bodyParser());
 app.use(
