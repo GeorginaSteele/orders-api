@@ -6,7 +6,7 @@ afterEach(done => {
   done();
 });
 
-describe("routes/healthcheck", () => {
+describe("healthy endpoint", () => {
   it("should be healthy", async () => {
     const response = await request(server).get("/healthy");
     expect(response.status).toEqual(200);

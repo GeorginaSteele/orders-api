@@ -1,5 +1,5 @@
 import request from "supertest";
-import * as faker from "faker";
+const faker = require("faker");
 
 import server from "../../../../src/server";
 
@@ -11,7 +11,7 @@ afterEach(done => {
 describe("OrderRouter", () => {
   it("should return the order details for a given order ID", async () => {
     const testOrderId: "string" = faker.random.uuid();
-    const testEmail: "string" = faker.random.email();
+    const testEmail: "string" = faker.random.email;
     const testLineId: "string" = faker.random.uuid();
 
     const response = await request(server).get(`/order/${testOrderId}`);
