@@ -4,6 +4,7 @@ import cors from "koa2-cors";
 import logger from "koa-logger";
 
 import { config } from "./config";
+import connection from "./database/connection";
 import healthyRoutes from "./routes/healthy/router";
 import { addRoutes } from "./routes";
 
@@ -22,12 +23,16 @@ app.use(logger());
 app.use(healthyRoutes.routes()); // declaring the healthy route separately so that it's easily extensible for CICD
 addRoutes(app);
 
-const server = app
-  .listen(PORT, async () => {
-    console.log(`Server listening on port: ${PORT}`);
-  })
-  .on("error", err => {
-    console.error(err);
-  });
+const start = async (): Promise<void> => {
+  try {
+    await connection.sync();
+    app.listen(PORT, async () => {
+      console.log(`Server listening on port: ${PORT}`);
+    });
+  } catch (error) {
+    console.error(error);
+    process.exit(1);
+  }
+};
 
-export default server;
+void start();
