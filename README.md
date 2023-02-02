@@ -1,7 +1,12 @@
 # sylvera-api
 
+## Design Requirements
 
+- security
+- testing
+- endpoint documentation (particularly as it will be used by a client)
 
+- would be good to have an abstraction layer on top of db
 
 ## Design Decisions
 
