@@ -4,7 +4,7 @@ import cors from "koa2-cors";
 import logger from "koa-logger";
 
 import { config } from "./config";
-import { addHealthCheck } from "./routes/healthcheck";
+import { addHealthCheck } from "./routes/healthy";
 import { addRoutes } from "./routes";
 
 const app = new Koa();
