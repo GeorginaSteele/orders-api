@@ -1,14 +1,20 @@
-import Router from "koa-router";
-const router = new Router();
+import * as Koa from "koa";
 
-router.get(`/healthy`, async ctx => {
-  try {
-    ctx.body = {
-      status: "healthy"
-    };
-  } catch (err) {
-    console.error(err);
-  }
-});
-
-export default router;
+export function addHealthCheck(app: Koa): void {
+  app.use(async (ctx, next) => {
+    if (ctx.path === "/healthy") {
+      try {
+        ctx.body = {
+          status: "healthy"
+        };
+        ctx.status = 200;
+      } catch (err) {
+        console.error(err);
+        ctx.body = {
+          status: "unhealthy"
+        };
+        ctx.status = 503;
+      }
+    }
+  });
+}
