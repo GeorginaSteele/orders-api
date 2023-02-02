@@ -9,14 +9,14 @@ afterEach(done => {
 });
 
 describe("OrderRouter", () => {
-  it("should return the order details for a given order ID", async () => {
+  it("should return the order details for an existing order ID", async () => {
     const testOrderId: "string" = faker.random.uuid();
     const testEmail: "string" = faker.random.email;
     const testLineId: "string" = faker.random.uuid();
 
     const response = await request(server).get(`/order/${testOrderId}`);
 
-    expect(response.status).toEqual(201);
+    expect(response.status).toEqual(200);
     expect(response.type).toEqual("application/json");
     expect(response.body).toEqual({
       id: testOrderId,
@@ -30,5 +30,15 @@ describe("OrderRouter", () => {
         }
       ]
     });
+  });
+
+  it("should return a 404 if the order ID does not exist", async () => {
+    const testOrderId: "string" = faker.random.uuid();
+    const testEmail: "string" = faker.random.email;
+    const testLineId: "string" = faker.random.uuid();
+
+    const response = await request(server).get(`/order/${testOrderId}`);
+
+    expect(response.status).toEqual(404);
   });
 });

@@ -3,5 +3,5 @@ interface Config {
 }
 
 export const config: Config = {
-  port: process.env.PORT || "7654"
+  port: process.env.PORT || "8080"
 };

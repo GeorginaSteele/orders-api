@@ -4,7 +4,7 @@ import cors from "koa2-cors";
 import logger from "koa-logger";
 
 import { config } from "./config";
-import { addHealthCheck } from "./routes/healthy";
+import healthyRoutes from "./routes/healthy/router";
 import { addRoutes } from "./routes";
 
 const app = new Koa();
@@ -14,11 +14,12 @@ const PORT = config.port;
 app.use(bodyParser());
 app.use(
   cors({
-    origin: "*"
+    origin: "*" // from anywhere for now for ease. Can make this client specific for added security
   })
 );
 app.use(logger());
-addHealthCheck(app); // by defining healthcheck separately, it gives you more options when moving to CICD
+
+app.use(healthyRoutes.routes()); // declaring the healthy route separately so that it's easily extensible for CICD
 addRoutes(app);
 
 const server = app
