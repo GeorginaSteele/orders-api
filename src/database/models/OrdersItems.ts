@@ -5,7 +5,8 @@ import {
   IsUUID,
   Model,
   PrimaryKey,
-  Table
+  Table,
+  BelongsTo
 } from "sequelize-typescript";
 import { Items } from "./Items";
 import { Orders } from "./Orders";
@@ -38,4 +39,7 @@ export class OrdersItems extends Model {
 
   @Column({ type: DataType.STRING(20) })
   notes!: string;
+
+  @BelongsTo(() => Orders)
+  orders!: Orders;
 }

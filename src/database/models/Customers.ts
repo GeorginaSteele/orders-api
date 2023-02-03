@@ -1,11 +1,13 @@
 import {
   Column,
   DataType,
+  HasMany,
   IsUUID,
   Model,
   PrimaryKey,
   Table
 } from "sequelize-typescript";
+import { Orders } from "./Orders";
 
 @Table({
   tableName: "customers"
@@ -24,4 +26,7 @@ export class Customers extends Model {
 
   @Column({ type: DataType.STRING(200) })
   family_name!: string;
+
+  @HasMany(() => Orders)
+  orders!: Orders;
 }

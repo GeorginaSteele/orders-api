@@ -1,13 +1,16 @@
 import {
+  BelongsTo,
   Column,
   DataType,
   ForeignKey,
+  HasMany,
   IsUUID,
   Model,
   PrimaryKey,
   Table
 } from "sequelize-typescript";
 import { Customers } from "./Customers";
+import { OrdersItems } from "./OrdersItems";
 
 @Table({
   tableName: "orders"
@@ -30,4 +33,10 @@ export class Orders extends Model {
 
   @Column({ type: DataType.DATE })
   date!: Date;
+
+  @HasMany(() => OrdersItems)
+  ordersItems!: OrdersItems;
+
+  @BelongsTo(() => Customers)
+  customers!: Customers;
 }
