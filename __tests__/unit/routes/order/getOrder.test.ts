@@ -1,10 +1,10 @@
 import request from "supertest";
 const faker = require("faker");
 
-import server from "../../../../src/server";
+import testServer from "../../utils/testServer";
 
 afterEach(done => {
-  server.close();
+  testServer.close();
   done();
 });
 
@@ -14,7 +14,7 @@ describe("OrderRouter", () => {
     const testEmail: "string" = faker.random.email;
     const testLineId: "string" = faker.random.uuid();
 
-    const response = await request(server).get(`/order/${testOrderId}`);
+    const response = await request(testServer).get(`/order/${testOrderId}`);
 
     expect(response.status).toEqual(200);
     expect(response.type).toEqual("application/json");
@@ -37,7 +37,7 @@ describe("OrderRouter", () => {
     const testEmail: "string" = faker.random.email;
     const testLineId: "string" = faker.random.uuid();
 
-    const response = await request(server).get(`/order/${testOrderId}`);
+    const response = await request(testServer).get(`/order/${testOrderId}`);
 
     expect(response.status).toEqual(404);
   });
