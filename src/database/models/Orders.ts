@@ -35,7 +35,7 @@ export class Orders extends Model {
   date!: Date;
 
   @HasMany(() => OrdersItems)
-  ordersItems!: OrdersItems;
+  ordersItems!: OrdersItems[];
 
   @BelongsTo(() => Customers)
   customers!: Customers;

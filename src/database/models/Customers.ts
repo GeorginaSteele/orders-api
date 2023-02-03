@@ -28,5 +28,5 @@ export class Customers extends Model {
   family_name!: string;
 
   @HasMany(() => Orders)
-  orders!: Orders;
+  orders!: Orders[];
 }

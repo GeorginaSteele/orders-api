@@ -25,5 +25,5 @@ export class Items extends Model {
   cost!: number;
 
   @HasMany(() => OrdersItems)
-  ordersItems!: OrdersItems;
+  ordersItems!: OrdersItems[];
 }
