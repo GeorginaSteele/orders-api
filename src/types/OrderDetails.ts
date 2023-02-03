@@ -1,8 +1,8 @@
-import { OrderItem } from "./OrderItem";
+import { OrdersItem } from "./OrderItem";
 
 export interface OrderDetails {
-  id: string;
+  orderId: string;
   status: string; // TODO convert this to enum when we know what the statuses could be
   email: string;
-  ordersItems: OrderItem[];
+  ordersItems: OrdersItem[];
 }

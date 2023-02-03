@@ -20,13 +20,13 @@ describe("getOrder", () => {
     const testEmail: string = faker.random.email;
     const testLineId: string = faker.datatype.number();
     const testOrderDetails: OrderDetails = {
-      id: testOrderId,
+      orderId: testOrderId,
       status: "OPEN",
       email: testEmail,
       ordersItems: [
         {
-          lineId: testLineId,
-          quantity: 1,
+          orderLineId: testLineId,
+          qty: 1,
           notes: ""
         }
       ]
@@ -43,7 +43,7 @@ describe("getOrder", () => {
           order_id: testOrderId,
           item_id: faker.datatype.uuid(),
           qty: 1,
-          notes: faker.random.string
+          notes: ""
         }
       ],
       customers: {

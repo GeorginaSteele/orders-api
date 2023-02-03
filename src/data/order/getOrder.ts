@@ -1,6 +1,6 @@
 import { Customers, Orders, OrdersItems } from "../../database/models";
 import { OrderNotFoundError } from "../../errors/OrderNotFoundError";
-import { GenericObject, OrderDetails } from "../../types";
+import { GenericObject, OrderDetails, OrdersItem } from "../../types";
 
 export async function getOrder(
   orderId: string
@@ -24,7 +24,16 @@ export async function getOrder(
     throw new OrderNotFoundError(orderId);
   }
 
-  // add a map to transform to correct type
+  const ordersItems: OrdersItem[] = order.ordersItems.map((orderItem: any) => ({
+    orderLineId: orderItem.id,
+    qty: orderItem.qty,
+    notes: orderItem.notes
+  }));
 
-  return (order as unknown) as OrderDetails;
+  return {
+    orderId: order.id,
+    status: order.status,
+    email: order.customers.email,
+    ordersItems
+  };
 }

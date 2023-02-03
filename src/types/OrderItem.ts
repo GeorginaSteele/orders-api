@@ -1,5 +1,5 @@
-export interface OrderItem {
-  lineId: string;
-  quantity: number;
+export interface OrdersItem {
+  orderLineId: string;
+  qty: number;
   notes: string;
 }
