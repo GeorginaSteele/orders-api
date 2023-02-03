@@ -2,17 +2,10 @@ import request from "supertest";
 const faker = require("faker");
 import { Model } from "sequelize-typescript";
 
-// import testServer from "../../utils/testServer";
-// import server from "../../../../src/main";
 import { getOrder } from "../../../../src/data/order/getOrder";
 import { OrderDetails } from "../../../../src/types";
 import { Orders } from "../../../../src/database/models";
 import { OrderNotFoundError } from "../../../../src/errors/OrderNotFoundError";
-
-// afterEach((done) => {
-//   server.close();
-//   done();
-// });
 
 describe("getOrder", () => {
   it("should return the order details for an existing order ID", async () => {

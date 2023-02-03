@@ -15,7 +15,7 @@ interface Config {
 
 // TODO: use username, password and database variables instead of storage to make the connection more secure
 export const config: Config = {
-  port: process.env.PORT || "8080",
+  port: String(process.env.PORT),
   database: {
     host: String(process.env.DB_HOST),
     username: String(process.env.DB_USERNAME),

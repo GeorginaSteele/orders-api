@@ -6,6 +6,8 @@
 - install requirements by running `npm i`
 - start the API by running `npm run start`
 
+- test using `npm run test`
+
 ## Design Requirements
 
 - security
