@@ -2,8 +2,6 @@ import { Context } from "koa";
 import Router from "koa-router";
 import { getOrder } from "../../data/order/getOrder";
 
-import { OrderNotFoundError } from "../../errors/OrderNotFoundError";
-
 const orderRouter = new Router({ prefix: `/order` });
 
 orderRouter.get(`/:orderId`, async (ctx: Context) => {
