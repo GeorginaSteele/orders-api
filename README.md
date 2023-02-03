@@ -29,4 +29,5 @@
 
 ## TO DO
 
-- replace `console.log` with a logger - when this isn't on local machines, we want to be able to hook the logging up to an observability service (like datadog)
+- replace `console.log` with a logger - when this isn't on local machines, we want to be able to hook the logging up to an observability service (like datadog). It would also allow us to have different log levels
+- integration tests
