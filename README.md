@@ -2,6 +2,7 @@
 
 ## Getting started
 
+- copy and update the contents of `.env.local.example` to your `.env` file
 - install requirements by running `npm i`
 - start the API by running `npm run start`
 
