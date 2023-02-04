@@ -3,7 +3,7 @@ import { Model } from "sequelize-typescript";
 
 import { getOrder } from "../../../../src/data/order/getOrder";
 import { OrderDetails } from "../../../../src/types";
-import { Orders } from "../../../../src/database/models";
+import { OrdersModel } from "../../../../src/database/models";
 import { OrderNotFoundError } from "../../../../src/errors";
 
 describe("getOrder", () => {
@@ -24,7 +24,7 @@ describe("getOrder", () => {
       ]
     };
 
-    jest.spyOn(Orders, "findOne").mockResolvedValue(({
+    jest.spyOn(OrdersModel, "findOne").mockResolvedValue(({
       id: testOrderId,
       customer_id: faker.datatype.uuid(),
       status: "OPEN",
@@ -41,7 +41,7 @@ describe("getOrder", () => {
       customers: {
         email: testEmail
       }
-    } as unknown) as Model<Orders>);
+    } as unknown) as Model<OrdersModel>);
 
     const orderResponse = await getOrder(testOrderId);
 
@@ -50,7 +50,7 @@ describe("getOrder", () => {
 
   it("should throw an error if the order ID does not exist", async () => {
     const testOrderId: string = "doesnotexist";
-    jest.spyOn(Orders, "findOne").mockResolvedValue(null);
+    jest.spyOn(OrdersModel, "findOne").mockResolvedValue(null);
 
     const orderResponse = getOrder(testOrderId);
 

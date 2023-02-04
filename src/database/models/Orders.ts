@@ -9,19 +9,19 @@ import {
   PrimaryKey,
   Table
 } from "sequelize-typescript";
-import { Customers } from "./Customers";
-import { OrdersItems } from "./OrdersItems";
+import { CustomersModel } from "./Customers";
+import { OrdersItemsModel } from "./OrdersItems";
 
 @Table({
   tableName: "orders"
 })
-export class Orders extends Model {
+export class OrdersModel extends Model {
   @IsUUID("all")
   @PrimaryKey
   @Column({ type: DataType.UUID, defaultValue: DataType.UUIDV4 })
   id!: string;
 
-  @ForeignKey(() => Customers)
+  @ForeignKey(() => CustomersModel)
   @IsUUID("all")
   @Column({
     type: DataType.UUID
@@ -34,9 +34,9 @@ export class Orders extends Model {
   @Column({ type: DataType.DATE })
   date!: Date;
 
-  @HasMany(() => OrdersItems)
-  ordersItems!: OrdersItems[];
+  @HasMany(() => OrdersItemsModel)
+  ordersItems!: OrdersItemsModel[];
 
-  @BelongsTo(() => Customers)
-  customers!: Customers;
+  @BelongsTo(() => CustomersModel)
+  customers!: CustomersModel;
 }

@@ -8,26 +8,26 @@ import {
   Table,
   BelongsTo
 } from "sequelize-typescript";
-import { Items } from "./Items";
-import { Orders } from "./Orders";
+import { ItemsModel } from "./Items";
+import { OrdersModel } from "./Orders";
 
 @Table({
   tableName: "orders_items"
 })
-export class OrdersItems extends Model {
+export class OrdersItemsModel extends Model {
   @IsUUID("all")
   @PrimaryKey
   @Column({ type: DataType.INTEGER })
   id!: number;
 
-  @ForeignKey(() => Orders)
+  @ForeignKey(() => OrdersModel)
   @IsUUID("all")
   @Column({
     type: DataType.UUID
   })
   order_id!: string;
 
-  @ForeignKey(() => Items)
+  @ForeignKey(() => ItemsModel)
   @IsUUID("all")
   @Column({
     type: DataType.UUID
@@ -40,6 +40,6 @@ export class OrdersItems extends Model {
   @Column({ type: DataType.STRING(20) })
   notes!: string;
 
-  @BelongsTo(() => Orders)
-  orders!: Orders;
+  @BelongsTo(() => OrdersModel)
+  orders!: OrdersModel;
 }
