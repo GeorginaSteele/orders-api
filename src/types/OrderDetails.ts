@@ -1,4 +1,4 @@
-import { OrdersItem } from "./OrderItem";
+import { OrdersItem } from "./OrdersItem";
 
 export interface OrderDetails {
   orderId: string;

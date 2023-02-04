@@ -1,7 +1,7 @@
 import * as Koa from "koa";
 import Router from "koa-router";
 
-// import { createOrderItem } from "../../data/orderItem/createOrderItem";
+import { createOrdersItem } from "../../data/ordersItem/createOrdersItem";
 import { InputFormatNotSupportedError } from "../../errors/InputFormatNotSupportedError";
 
 const ordersItemRouter = new Router({ prefix: `/ordersItem` });
@@ -15,9 +15,9 @@ ordersItemRouter.post(`/:orderId`, async (ctx: Koa.Context) => {
     }
     const { itemId, qty, notes } = ctx.request.body;
 
-    // const orderItem = await createOrderItem(orderId, itemId, qty, notes);
+    const ordersItemId = await createOrdersItem(orderId, itemId, qty, notes);
 
-    // ctx.response.body = { orderLineId: orderItem.id };
+    ctx.response.body = { orderLineId: ordersItemId };
     ctx.status = 201;
   } catch (err) {
     console.error(err);
