@@ -1,4 +1,3 @@
-import request from "supertest";
 const faker = require("faker");
 import { Model } from "sequelize-typescript";
 

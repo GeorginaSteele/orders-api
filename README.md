@@ -23,6 +23,7 @@
 ### Assumptions
 
 - `Order Line ID` corresponds to the id in the `orders_items` table in the db
+- notes are not required when adding an order item line
 
 ### API Framework
 
