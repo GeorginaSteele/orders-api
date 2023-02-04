@@ -2,7 +2,7 @@ import * as Koa from "koa";
 import Router from "koa-router";
 
 import { createOrdersItem } from "../../data/ordersItem/createOrdersItem";
-import { InputFormatNotSupportedError } from "../../errors/InputFormatNotSupportedError";
+import { InputFormatNotSupportedError } from "../../errors";
 
 const ordersItemRouter = new Router({ prefix: `/ordersItem` });
 

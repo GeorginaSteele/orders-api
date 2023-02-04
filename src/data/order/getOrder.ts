@@ -1,5 +1,5 @@
 import { Customers, Orders, OrdersItems } from "../../database/models";
-import { OrderNotFoundError } from "../../errors/OrderNotFoundError";
+import { OrderNotFoundError } from "../../errors";
 import { GenericObject, OrderDetails, OrdersItem } from "../../types";
 
 export async function getOrder(

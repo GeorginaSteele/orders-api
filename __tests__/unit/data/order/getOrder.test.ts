@@ -4,7 +4,7 @@ import { Model } from "sequelize-typescript";
 import { getOrder } from "../../../../src/data/order/getOrder";
 import { OrderDetails } from "../../../../src/types";
 import { Orders } from "../../../../src/database/models";
-import { OrderNotFoundError } from "../../../../src/errors/OrderNotFoundError";
+import { OrderNotFoundError } from "../../../../src/errors";
 
 describe("getOrder", () => {
   it("should return the order details for an existing order ID", async () => {
