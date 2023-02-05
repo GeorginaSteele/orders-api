@@ -24,7 +24,7 @@ describe("createOrdersItem", () => {
 
     jest
       .spyOn(getOrdersItem, "getOrdersItem")
-      .mockRejectedValue(OrderItemNotFoundError);
+      .mockRejectedValue(new OrderItemNotFoundError(testOrderId));
     jest
       .spyOn(OrdersItemsModel, "create")
       .mockResolvedValue(({ id: testOrdersItemId } as unknown) as Model<
@@ -45,7 +45,7 @@ describe("createOrdersItem", () => {
       notes: testNotes
     });
 
-    expect(ordersItemResponse).toEqual(testOrdersItem);
+    expect(ordersItemResponse).toEqual(testOrdersItemId);
   });
 
   it("should increase the quantity of the item in the order if it is already part of the order", async () => {
@@ -62,17 +62,13 @@ describe("createOrdersItem", () => {
       qty: existingQty,
       notes: testNotes
     };
-    const testOrdersItem: OrdersItem = {
-      ...existingOrdersItem,
-      qty: existingQty + inputQty
-    };
 
     jest
       .spyOn(getOrdersItem, "getOrdersItem")
       .mockResolvedValue(existingOrdersItem);
     jest.spyOn(OrdersItemsModel, "update").mockResolvedValue([1]);
 
-    const ordersItemResponse = await createOrdersItem(
+    const ordersItemId = await createOrdersItem(
       testOrderId,
       testItemId,
       inputQty,
@@ -89,6 +85,6 @@ describe("createOrdersItem", () => {
       }
     );
 
-    expect(ordersItemResponse).toEqual(testOrdersItem);
+    expect(ordersItemId).toEqual(testOrdersItemId);
   });
 });

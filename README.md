@@ -1,5 +1,7 @@
 # sylvera-api
 
+This is a simple API using standard HTTP protocol that connects to a db via a transformation layer (sequelize).
+
 ## Getting started
 
 - copy and update the contents of `.env.local.example` to your `.env` file

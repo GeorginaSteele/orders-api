@@ -15,7 +15,7 @@ const PORT = config.port;
 
 app.use(
   cors({
-    origin: "*" // from anywhere for now for ease. Can make this client specific for added security
+    origin: "*" // TODO: make this client specific for added security
   })
 );
 app.use(logger());
@@ -39,27 +39,27 @@ const start = async (): Promise<void> => {
   }
 };
 
-// To Do: use this when we move to CICD
-// const stop = async (): Promise<void> => {
-//   let exit = 0;
-//   try {
-//     await connection.close();
-//   } catch (error) {
-//     console.error(error);
-//     exit = 1;
-//   }
+// TODO: use this when we move to CICD
+const stop = async (): Promise<void> => {
+  let exit = 0;
+  try {
+    await connection.close();
+  } catch (error) {
+    console.error(error);
+    exit = 1;
+  }
 
-//   try {
-//     server.close();
-//   } catch (error) {
-//     console.error(error);
-//     exit = 1;
-//   }
+  try {
+    server.close();
+  } catch (error) {
+    console.error(error);
+    exit = 1;
+  }
 
-//   if (exit === 1) {
-//     process.exit(exit);
-//   }
-// };
+  if (exit === 1) {
+    process.exit(exit);
+  }
+};
 
 void start();
 

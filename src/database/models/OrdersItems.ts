@@ -6,7 +6,8 @@ import {
   Model,
   PrimaryKey,
   Table,
-  BelongsTo
+  BelongsTo,
+  AutoIncrement
 } from "sequelize-typescript";
 import { ItemsModel } from "./Items";
 import { OrdersModel } from "./Orders";
@@ -15,8 +16,8 @@ import { OrdersModel } from "./Orders";
   tableName: "orders_items"
 })
 export class OrdersItemsModel extends Model {
-  @IsUUID("all")
   @PrimaryKey
+  @AutoIncrement
   @Column({ type: DataType.INTEGER })
   id!: number;
 

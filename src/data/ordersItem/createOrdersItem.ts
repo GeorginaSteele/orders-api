@@ -8,12 +8,12 @@ export async function createOrdersItem(
   itemId: string,
   qty: number,
   notes: string
-): Promise<OrdersItem> {
+): Promise<number> {
   let ordersItem: OrdersItem | null = null;
   try {
     ordersItem = await getOrdersItem(orderId, itemId);
   } catch (error) {
-    if (error instanceof OrderItemNotFoundError) {
+    if (!(error instanceof OrderItemNotFoundError)) {
       throw error;
     }
   }
@@ -48,5 +48,5 @@ export async function createOrdersItem(
     };
   }
 
-  return ordersItem;
+  return ordersItem.orderLineId;
 }
