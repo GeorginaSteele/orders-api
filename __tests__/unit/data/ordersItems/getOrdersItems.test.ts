@@ -1,14 +1,13 @@
 const faker = require("faker");
 import { Model } from "sequelize-typescript";
 
-import * as item from "../../../../src/data/item/getItem";
 import { getOrdersItems } from "../../../../src/data/ordersItems/getOrdersItems";
 import { OrdersItemsModel } from "../../../../src/database/models";
-import { OrderDetails, OrdersItem } from "../../../../src/types";
+import { OrdersItem } from "../../../../src/types";
 
 describe("getOrdersItems", () => {
   it("should get all items in the order", async () => {
-    const testOrdersItemId: string = faker.datatype.uuid();
+    const testOrdersItemId: number = faker.datatype.number();
     const testOrderId: string = faker.datatype.uuid();
     const testItemId: string = faker.datatype.uuid();
     const testQty: number = faker.datatype.number();
@@ -38,7 +37,7 @@ describe("getOrdersItems", () => {
   });
 
   it("should return an empty array if there are no items in the order", async () => {
-    const testOrderId: string = "doesnotexist";
+    const testOrderId: string = faker.random.uuid();
 
     jest
       .spyOn(OrdersItemsModel, "findAll")

@@ -35,7 +35,7 @@ export class OrdersItemsModel extends Model {
   item_id!: string;
 
   @Column({ type: DataType.INTEGER })
-  qty!: string;
+  qty!: number;
 
   @Column({ type: DataType.STRING(20) })
   notes!: string;

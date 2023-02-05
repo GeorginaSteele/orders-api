@@ -10,7 +10,7 @@ describe("getOrder", () => {
   it("should return the order details for an existing order ID", async () => {
     const testOrderId: string = faker.datatype.uuid();
     const testEmail: string = faker.random.email;
-    const testLineId: string = faker.datatype.number();
+    const testLineId: number = faker.datatype.number();
     const testOrderDetails: OrderDetails = {
       orderId: testOrderId,
       status: "OPEN",

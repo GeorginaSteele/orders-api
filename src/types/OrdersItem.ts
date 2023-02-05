@@ -1,5 +1,5 @@
 export interface OrdersItem {
-  orderLineId: string;
+  orderLineId: number;
   qty: number;
   notes: string;
   orderId?: string;
