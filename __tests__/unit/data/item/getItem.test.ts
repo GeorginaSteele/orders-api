@@ -3,7 +3,7 @@ import { Model } from "sequelize-typescript";
 
 import { getItem } from "../../../../src/data/item/getItem";
 import { Item } from "../../../../src/types";
-import { Items } from "../../../../src/database/models";
+import { ItemsModel } from "../../../../src/database/models";
 import { ItemNotFoundError } from "../../../../src/errors";
 
 describe("getItem", () => {
@@ -17,11 +17,11 @@ describe("getItem", () => {
       cost: testCost
     };
 
-    jest.spyOn(Items, "findOne").mockResolvedValue(({
+    jest.spyOn(ItemsModel, "findOne").mockResolvedValue(({
       id: testItemId,
       name: testName,
       cost: testCost
-    } as unknown) as Model<Items>);
+    } as unknown) as Model<ItemsModel>);
 
     const itemResponse = await getItem(testItemId);
 
@@ -30,7 +30,7 @@ describe("getItem", () => {
 
   it("should throw an error if the item ID does not exist", async () => {
     const testitemId: string = "doesnotexist";
-    jest.spyOn(Items, "findOne").mockResolvedValue(null);
+    jest.spyOn(ItemsModel, "findOne").mockResolvedValue(null);
 
     const itemResponse = getItem(testitemId);
 
