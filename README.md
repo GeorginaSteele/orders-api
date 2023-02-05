@@ -39,7 +39,7 @@ This is a simple API using standard HTTP protocol that connects to a db via a tr
 
 ### Plan for PUT /ordersItem
 
-- endpoint URL should be `/ordersItem/:orderLineId`, where ordersItemId corresponds to the ID of the row in the `orders_items` table
+- endpoint URL should be `/ordersItem/:orderLineId`, where `ordersItemId` corresponds to the ID of the row in the `orders_items` table
 - NOTE: `orderLineId` can be found by using the GET `/order` endpoint. It might be useful to implement a GET `/ordersItem/:orderLineId`. The underlying functionality is already created [here](./src/data/ordersItem/getOrdersItem.ts)
 - body should have `qty` and/ or `notes` as inputs - need to validate datatype for both, and should have at least one
 - functionality of updating the orders item can be refactored out of the createOrdersItem module [here](https://github.com/GeorginaSteele/orders-api/blob/faf135736897da118096ed564be60773e6480307/src/data/ordersItem/createOrdersItem.ts#L23)
