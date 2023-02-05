@@ -1,3 +1,4 @@
 export * from "./GenericObject";
 export * from "./OrderDetails";
-export * from "./OrderItem";
+export * from "./OrdersItem";
+export * from "./Item";

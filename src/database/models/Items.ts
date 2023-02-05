@@ -7,12 +7,12 @@ import {
   PrimaryKey,
   Table
 } from "sequelize-typescript";
-import { OrdersItems } from "./OrdersItems";
+import { OrdersItemsModel } from "./OrdersItems";
 
 @Table({
   tableName: "items"
 })
-export class Items extends Model {
+export class ItemsModel extends Model {
   @IsUUID("all")
   @PrimaryKey
   @Column({ type: DataType.UUID, defaultValue: DataType.UUIDV4 })
@@ -24,6 +24,6 @@ export class Items extends Model {
   @Column({ type: DataType.REAL })
   cost!: number;
 
-  @HasMany(() => OrdersItems)
-  ordersItems!: OrdersItems[];
+  @HasMany(() => OrdersItemsModel)
+  ordersItems!: OrdersItemsModel[];
 }

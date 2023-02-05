@@ -7,12 +7,12 @@ import {
   PrimaryKey,
   Table
 } from "sequelize-typescript";
-import { Orders } from "./Orders";
+import { OrdersModel } from "./Orders";
 
 @Table({
   tableName: "customers"
 })
-export class Customers extends Model {
+export class CustomersModel extends Model {
   @IsUUID("all")
   @PrimaryKey
   @Column({ type: DataType.UUID, defaultValue: DataType.UUIDV4 })
@@ -27,6 +27,6 @@ export class Customers extends Model {
   @Column({ type: DataType.STRING(200) })
   family_name!: string;
 
-  @HasMany(() => Orders)
-  orders!: Orders[];
+  @HasMany(() => OrdersModel)
+  orders!: OrdersModel[];
 }

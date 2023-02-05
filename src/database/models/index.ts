@@ -1,9 +1,14 @@
-import { Customers } from "./Customers";
-import { Items } from "./Items";
-import { Orders } from "./Orders";
-import { OrdersItems } from "./OrdersItems";
+import { CustomersModel } from "./Customers";
+import { ItemsModel } from "./Items";
+import { OrdersModel } from "./Orders";
+import { OrdersItemsModel } from "./OrdersItems";
 
-export const Models = [Customers, Items, Orders, OrdersItems];
+export const Models = [
+  CustomersModel,
+  ItemsModel,
+  OrdersModel,
+  OrdersItemsModel
+];
 
 export * from "./Customers";
 export * from "./Items";

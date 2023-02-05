@@ -1,5 +1,9 @@
-import { Customers, Orders, OrdersItems } from "../../database/models";
-import { OrderNotFoundError } from "../../errors/OrderNotFoundError";
+import {
+  CustomersModel,
+  OrdersModel,
+  OrdersItemsModel
+} from "../../database/models";
+import { OrderNotFoundError } from "../../errors";
 import { GenericObject, OrderDetails, OrdersItem } from "../../types";
 
 export async function getOrder(
@@ -9,12 +13,12 @@ export async function getOrder(
     id: orderId
   };
 
-  const order = await Orders.findOne({
+  const order = await OrdersModel.findOne({
     include: [
       {
-        model: OrdersItems
+        model: OrdersItemsModel
       },
-      { model: Customers, attributes: ["email"], required: true }
+      { model: CustomersModel, attributes: ["email"], required: true }
     ],
     where: filter
   });
