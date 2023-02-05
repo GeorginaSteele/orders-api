@@ -1,7 +1,7 @@
 const faker = require("faker");
+import { Context } from "koa";
 
 import { isValidateOrdersItemInputs } from "../../../../src/routes/ordersItem/router";
-import { Context } from "koa";
 
 describe("validateOrdersItemInputs", () => {
   const testOrderId: string = faker.datatype.uuid();
