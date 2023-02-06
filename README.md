@@ -29,13 +29,14 @@ This is a simple API using standard HTTP protocol that connects to a db via a tr
 
 ## TO DO
 
-- add authentication - perhaps using bearer tokens which we could use to identify which customer is using the API
+- add authentication - perhaps using bearer tokens which we could use to identify which customer is using the API; token per customer; authorisation using OAuth2.0
 - add a put endpoint for orders item to allow the customer to change the qty and notes fields
 - replace `console.log` with a logger - to allow us to have different log levels
 - add integration tests
 - add a decorator that checks if the order ID exists (this logic will be repeated across many endpoints otherwise)
 - add living documentation for the endpoints - needs to be shareable with clients and anyone working on the project
 - make Insomnia project shareable - project currently exists on @Georgina's Insomnia project
+- move to postgres in production with backups, multi-AZs, etc.
 
 ### Plan for PUT /ordersItem
 
