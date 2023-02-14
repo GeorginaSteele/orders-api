@@ -2,6 +2,7 @@ import { OrdersItemsModel } from "../../database/models";
 import { OrderItemNotFoundError } from "../../errors";
 import { OrdersItem } from "../../types";
 import { getOrdersItem } from "../ordersItem/getOrdersItem";
+import { updateOrdersItem } from "./updateOrdersItem";
 
 export async function createOrdersItem(
   orderId: string,

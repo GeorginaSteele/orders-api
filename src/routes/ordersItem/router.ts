@@ -10,6 +10,7 @@ const ordersItemRouter = new Router({ prefix: `/ordersItem` });
 
 ordersItemRouter.post(`/:orderId`, async (ctx: Koa.Context) => {
   try {
+    // TODO: remove try catch here
     const { orderId } = ctx.params;
 
     if (!isValidateOrdersItemInputs(ctx, orderId)) {
