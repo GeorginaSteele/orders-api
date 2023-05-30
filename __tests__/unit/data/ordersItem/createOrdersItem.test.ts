@@ -49,7 +49,7 @@ describe('createOrdersItem', () => {
     expect(ordersItemResponse).toEqual(testOrdersItemId);
   });
 
-  it.only('should increase the quantity of the item in the order if it is already part of the order', async () => {
+  it('should increase the quantity of the item in the order if it is already part of the order', async () => {
     const testOrdersItemId: number = faker.datatype.number();
     const testOrderId: string = faker.datatype.uuid();
     const testItemId: string = faker.datatype.uuid();
