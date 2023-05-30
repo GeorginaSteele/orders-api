@@ -8,6 +8,7 @@ import connection from "./database/connection";
 import healthyRoutes from "./routes/healthy/router";
 import { addRoutes } from "./routes";
 import { Server } from "http";
+import { GenericError } from "./errors/GenericError";
 
 const app = new Koa();
 
@@ -27,8 +28,10 @@ app.use(async (ctx, next) => {
     await next();
   } catch (error) {
     console.error(error);
-    ctx.status = error.status;
-    ctx.response.body = error.message;
+    if (error instanceof GenericError) {
+      ctx.status = error.status;
+      ctx.response.body = error.message;
+    }
   }
 });
 app.use(healthyRoutes.routes()); // declaring the healthy route separately so that it's easily extensible for CICD
