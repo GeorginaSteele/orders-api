@@ -1,7 +1,7 @@
 import { OrdersItemsModel } from "../../database/models";
 import { OrdersItem } from "../../types";
 
-export async function updateOrdersItem(ordersItem: OrdersItem): Promise<void> {
+export async function updateOrdersItem(ordersItem: OrdersItem): Promise<number> {
   await OrdersItemsModel.update(
     { qty: ordersItem.qty, notes: ordersItem.notes },
     {
@@ -10,4 +10,5 @@ export async function updateOrdersItem(ordersItem: OrdersItem): Promise<void> {
       }
     }
   );
+  return ordersItem.orderLineId;
 }

@@ -1,14 +1,15 @@
-const faker = require("faker");
-import { Model } from "sequelize-typescript";
+const faker = require('faker');
+import { Model } from 'sequelize-typescript';
 
-import { createOrdersItem } from "../../../../src/data/ordersItem/createOrdersItem";
-import * as getOrdersItem from "../../../../src/data/ordersItem/getOrdersItem";
-import { OrdersItemsModel } from "../../../../src/database/models";
-import { OrderItemNotFoundError } from "../../../../src/errors";
-import { OrdersItem } from "../../../../src/types";
+import { createOrdersItem } from '../../../../src/data/ordersItem/createOrdersItem';
+import * as getOrdersItem from '../../../../src/data/ordersItem/getOrdersItem';
+import * as updateOrdersItem from '../../../../src/data/ordersItem/updateOrdersItem';
+import { OrdersItemsModel } from '../../../../src/database/models';
+import { OrderItemNotFoundError } from '../../../../src/errors';
+import { OrdersItem } from '../../../../src/types';
 
-describe("createOrdersItem", () => {
-  it("should add the item to the order if it is not already part of the order", async () => {
+describe('createOrdersItem', () => {
+  it('should add the item to the order if it is not already part of the order', async () => {
     const testOrdersItemId: number = faker.datatype.number();
     const testOrderId: string = faker.datatype.uuid();
     const testItemId: string = faker.datatype.uuid();
@@ -19,14 +20,14 @@ describe("createOrdersItem", () => {
       orderId: testOrderId,
       itemId: testItemId,
       qty: testQty,
-      notes: testNotes
+      notes: testNotes,
     };
 
     jest
-      .spyOn(getOrdersItem, "getOrdersItem")
+      .spyOn(getOrdersItem, 'getOrdersItem')
       .mockRejectedValue(new OrderItemNotFoundError(testOrderId));
     jest
-      .spyOn(OrdersItemsModel, "create")
+      .spyOn(OrdersItemsModel, 'create')
       .mockResolvedValue(({ id: testOrdersItemId } as unknown) as Model<
         OrdersItemsModel
       >);
@@ -42,13 +43,13 @@ describe("createOrdersItem", () => {
       order_id: testOrderId,
       item_id: testItemId,
       qty: testQty,
-      notes: testNotes
+      notes: testNotes,
     });
 
     expect(ordersItemResponse).toEqual(testOrdersItemId);
   });
 
-  it("should increase the quantity of the item in the order if it is already part of the order", async () => {
+  it.only('should increase the quantity of the item in the order if it is already part of the order', async () => {
     const testOrdersItemId: number = faker.datatype.number();
     const testOrderId: string = faker.datatype.uuid();
     const testItemId: string = faker.datatype.uuid();
@@ -60,13 +61,15 @@ describe("createOrdersItem", () => {
       orderId: testOrderId,
       itemId: testItemId,
       qty: existingQty,
-      notes: testNotes
+      notes: testNotes,
     };
 
     jest
-      .spyOn(getOrdersItem, "getOrdersItem")
+      .spyOn(getOrdersItem, 'getOrdersItem')
       .mockResolvedValue(existingOrdersItem);
-    jest.spyOn(OrdersItemsModel, "update").mockResolvedValue([1]);
+    jest
+      .spyOn(updateOrdersItem, 'updateOrdersItem')
+      .mockResolvedValue(testOrdersItemId);
 
     const ordersItemId = await createOrdersItem(
       testOrderId,
@@ -75,15 +78,10 @@ describe("createOrdersItem", () => {
       testNotes
     );
 
-    expect(OrdersItemsModel.update).toHaveBeenCalledWith(
-      { qty: inputQty + existingQty },
-      {
-        where: {
-          order_id: testOrderId,
-          item_id: testItemId
-        }
-      }
-    );
+    expect(updateOrdersItem.updateOrdersItem).toHaveBeenCalledWith({
+      ...existingOrdersItem,
+      qty: existingQty + inputQty,
+    });
 
     expect(ordersItemId).toEqual(testOrdersItemId);
   });
