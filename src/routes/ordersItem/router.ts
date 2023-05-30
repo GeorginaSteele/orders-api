@@ -9,26 +9,21 @@ import { InputFormatNotSupportedError } from "../../errors";
 const ordersItemRouter = new Router({ prefix: `/ordersItem` });
 
 ordersItemRouter.post(`/:orderId`, async (ctx: Koa.Context) => {
-  try {
-    // TODO: remove try catch here
-    const { orderId } = ctx.params;
+  const { orderId } = ctx.params;
 
-    if (!isValidateOrdersItemInputs(ctx, orderId)) {
-      throw new InputFormatNotSupportedError(orderId);
-    }
-    const { itemId, qty, notes } = ctx.request.body;
-
-    // check if given identifiers exist
-    await getOrder(orderId);
-    await getItem(itemId);
-
-    const ordersItemId = await createOrdersItem(orderId, itemId, qty, notes);
-
-    ctx.response.body = { orderLineId: ordersItemId };
-    ctx.status = 201;
-  } catch (err) {
-    console.error(err);
+  if (!isValidateOrdersItemInputs(ctx, orderId)) {
+    throw new InputFormatNotSupportedError(orderId);
   }
+  const { itemId, qty, notes } = ctx.request.body;
+
+  // check if given identifiers exist
+  await getOrder(orderId);
+  await getItem(itemId);
+
+  const ordersItemId = await createOrdersItem(orderId, itemId, qty, notes);
+
+  ctx.response.body = { orderLineId: ordersItemId };
+  ctx.status = 201;
 });
 
 export function isValidateOrdersItemInputs(

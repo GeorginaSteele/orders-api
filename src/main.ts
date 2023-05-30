@@ -21,6 +21,16 @@ app.use(
 app.use(logger());
 
 app.use(koaBody());
+
+app.use(async (ctx, next) => {
+  try {
+    await next();
+  } catch (error) {
+    console.error(error);
+    ctx.status = error.status;
+    ctx.response.body = error.message;
+  }
+});
 app.use(healthyRoutes.routes()); // declaring the healthy route separately so that it's easily extensible for CICD
 addRoutes(app);
 
