@@ -68,8 +68,7 @@ describe('createOrdersItem', () => {
       .spyOn(getOrdersItem, 'getOrdersItem')
       .mockResolvedValue(existingOrdersItem);
     jest
-      .spyOn(updateOrdersItem, 'updateOrdersItem')
-      .mockResolvedValue(testOrdersItemId);
+      .spyOn(updateOrdersItem, 'updateOrdersItem').mockResolvedValue();
 
     const ordersItemId = await createOrdersItem(
       testOrderId,

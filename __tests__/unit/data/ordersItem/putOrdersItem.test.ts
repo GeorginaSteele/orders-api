@@ -6,7 +6,7 @@ import { OrdersItemsModel } from "../../../../src/database/models";
 import { OrdersItem } from "../../../../src/types";
 
 describe("updateOrdersItem", () => {
-  it("should increase the quantity of the item in the order if the item is part of the order", async () => {
+  it("should update the quantity and notes of the item in the order if the item is part of the order", async () => {
     const testOrdersItemId: number = faker.datatype.number();
     const testQty: number = faker.datatype.number();
     const testNotes: string = faker.datatype.string();
@@ -16,7 +16,7 @@ describe("updateOrdersItem", () => {
       notes: testNotes
     };
     jest.spyOn(OrdersItemsModel, "update").mockResolvedValue([1]);
-    const ordersItemId = await updateOrdersItem(testOrdersItem);
+    await updateOrdersItem(testOrdersItem);
     expect(OrdersItemsModel.update).toHaveBeenCalledWith(
       { qty: testQty, notes: testNotes },
       {
@@ -26,8 +26,4 @@ describe("updateOrdersItem", () => {
       }
     );
   });
-
-  xit("should update the notes of the item in the order if the item is part of the order", async () => {});
-
-  xit("should throw an error if the item is not in the order", async () => {});
 });
