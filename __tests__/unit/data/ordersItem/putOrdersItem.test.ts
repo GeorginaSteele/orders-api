@@ -6,7 +6,7 @@ import { OrdersItemsModel } from "../../../../src/database/models";
 import { OrdersItem } from "../../../../src/types";
 
 describe("updateOrdersItem", () => {
-  it("should update the quantity and notes of the item in the order if the item is part of the order", async () => {
+  it("should update the quantity and notes of the item in the order", async () => {
     const testOrdersItemId: number = faker.datatype.number();
     const testQty: number = faker.datatype.number();
     const testNotes: string = faker.datatype.string();
