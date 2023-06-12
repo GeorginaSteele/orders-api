@@ -8,6 +8,8 @@ This is a simple API using standard HTTP protocol that connects to a db via a tr
 - install requirements by running `npm i`
 - start the API by running `npm run start`
 
+_To check that the API has started successfully, use `curl http://localhost:3040/healthy` in the terminal_
+
 - test using `npm run test`
 
 ## Design Decisions

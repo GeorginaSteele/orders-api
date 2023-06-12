@@ -1,6 +1,6 @@
-import { OrdersItemsModel } from "../../database/models";
-import { OrderItemNotFoundError } from "../../errors";
-import { GenericObject, OrdersItem } from "../../types";
+import { OrdersItemsModel } from '../../database/models';
+import { OrderItemNotFoundError } from '../../errors';
+import { GenericObject, OrdersItem } from '../../types';
 
 export async function getOrdersItem(
   orderId: string,
@@ -8,7 +8,7 @@ export async function getOrdersItem(
 ): Promise<OrdersItem> {
   const filter: GenericObject = {
     order_id: orderId,
-    item_id: itemId
+    item_id: itemId,
   };
 
   const ordersItem = await OrdersItemsModel.findOne({ where: filter });
@@ -23,6 +23,6 @@ export async function getOrdersItem(
     orderId: ordersItem.order_id,
     itemId: ordersItem.item_id,
     qty: ordersItem.qty,
-    notes: ordersItem.notes
+    notes: ordersItem.notes,
   };
 }

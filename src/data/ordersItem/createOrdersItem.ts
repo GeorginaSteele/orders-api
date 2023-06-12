@@ -1,7 +1,8 @@
-import { OrdersItemsModel } from "../../database/models";
-import { OrderItemNotFoundError } from "../../errors";
-import { OrdersItem } from "../../types";
-import { getOrdersItem } from "../ordersItem/getOrdersItem";
+import { OrdersItemsModel } from '../../database/models';
+import { OrderItemNotFoundError } from '../../errors';
+import { OrdersItem } from '../../types';
+import { getOrdersItem } from '../ordersItem/getOrdersItem';
+import { updateOrdersItem } from './updateOrdersItem';
 
 export async function createOrdersItem(
   orderId: string,
@@ -20,15 +21,7 @@ export async function createOrdersItem(
 
   if (ordersItem) {
     const newItemQuantity: number = ordersItem.qty + qty;
-    await OrdersItemsModel.update(
-      { qty: newItemQuantity },
-      {
-        where: {
-          order_id: orderId,
-          item_id: itemId
-        }
-      }
-    );
+    await updateOrdersItem({ ...ordersItem, qty: newItemQuantity });
 
     ordersItem.qty = newItemQuantity;
   } else {
@@ -36,7 +29,7 @@ export async function createOrdersItem(
       order_id: orderId,
       item_id: itemId,
       qty,
-      notes
+      notes,
     });
 
     ordersItem = {
@@ -44,7 +37,7 @@ export async function createOrdersItem(
       orderId,
       itemId,
       qty,
-      notes
+      notes,
     };
   }
 
